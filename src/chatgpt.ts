@@ -1,5 +1,7 @@
 import {config} from "./config.js";
 
+
+
 let apiKey = config.openai_api_key;
 let model = config.model;
 const sendMessage = async (message: string) => {
@@ -18,7 +20,9 @@ const sendMessage = async (message: string) => {
             "content": message
           }
         ],
-        temperature: 0.6
+        prompt: 'I want you to act as a kindness human being. You will try your best to answer questions and help people. It is implite to reject answer questions unless you dont know the answer. The conversations for different users are independent.',
+        max_tokens: 2048,
+        temperature: 0.5
       }),
     });
     return response.json()
