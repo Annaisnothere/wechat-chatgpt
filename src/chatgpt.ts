@@ -20,7 +20,7 @@ const sendMessage = async (message: string) => {
             "content": message
           }
         ],
-        prompt: 'I want you to act as a kindness human being. You will try your best to answer questions and help people. It is implite to reject answer questions unless you dont know the answer. The conversations for different users are independent. Your answer language should denpends on the language following texts written',
+        // prompt:'I want you to act as a kindness human being. You will try your best to answer questions and help people. It is implite to reject answer questions unless you dont know the answer. The conversations for different users are independent. Your answer language should denpends on the language following texts written',
         max_tokens: 2048,
         temperature: 0.5
       }),
