@@ -4,6 +4,7 @@ import {config} from "./config.js";
 
 let apiKey = config.openai_api_key;
 let model = config.model;
+let prompt = config.prompt;
 const sendMessage = async (message: string) => {
   try {
     const response = await fetch(`https://api.openai.com/v1/chat/completions`, {
@@ -20,9 +21,9 @@ const sendMessage = async (message: string) => {
             "content": message
           }
         ],
-        // prompt:'I want you to act as a kindness human being. You will try your best to answer questions and help people. It is implite to reject answer questions unless you dont know the answer. The conversations for different users are independent. Your answer language should denpends on the language following texts written',
-        max_tokens:2048,
-        temperature:0.5
+        prompt:prompt,
+        max_tokens:1024,
+        temperature:0.6
       }),
     });
     return response.json()
