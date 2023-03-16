@@ -17,11 +17,14 @@ const sendMessage = async (message: string) => {
         model: model,
         messages: [
           {
+            "role": "system",
+            "content": prompt
+          },
+          {
             "role": "user",
             "content": message
           }
         ],
-        prompt:prompt,
         max_tokens:1024,
         temperature:0.6
       }),
