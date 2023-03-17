@@ -26,7 +26,7 @@ const sendMessage = async (message: string) => {
           }
         ],
         max_tokens:1024,
-        temperature:0.6
+        temperature:0.4
       }),
     });
     return response.json()
