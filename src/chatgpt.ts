@@ -33,7 +33,7 @@ const sendMessage = async (message: string) => {
       .then((data) => data.choices[0].message.content);
   } catch (e) {
     console.error(e)
-    return "Something went wrong"
+    return "请再问我一次吧"
   }
 }
 
