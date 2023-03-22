@@ -22,27 +22,18 @@ const sendMessage = async (message: string) => {
           },
           {
             "role": "user",
-            "content": message,
-            "isContinuation": true
+            "content": message
           }
         ],
         max_tokens:1024,
         temperature:0.4
       }),
     });
-    if (!response.ok) {
-      throw new Error(`API response error: ${response.status} ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    if (data.choices && data.choices.length > 0 && data.choices[0].message && data.choices[0].message.content) {
-      return data.choices[0].message.content;
-    } else {
-      throw new Error('Unexpected API response format');
-    }
+    return response.json()
+      .then((data) => data.choices[0].message.content);
   } catch (e) {
-    console.error(e);
-    return "请再问我一次吧";
+    console.error(e)
+    return "请再问我一次吧"
   }
 }
 
