@@ -22,7 +22,8 @@ const sendMessage = async (message: string) => {
           },
           {
             "role": "user",
-            "content": message
+            "content": message,
+            "isContinuation": true
           }
         ],
         max_tokens:1024,
