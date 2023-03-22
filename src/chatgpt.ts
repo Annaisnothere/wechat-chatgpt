@@ -30,11 +30,19 @@ const sendMessage = async (message: string) => {
         temperature:0.4
       }),
     });
-    return response.json()
-      .then((data) => data.choices[0].message.content);
+    if (!response.ok) {
+      throw new Error(`API response error: ${response.status} ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    if (data.choices && data.choices.length > 0 && data.choices[0].message && data.choices[0].message.content) {
+      return data.choices[0].message.content;
+    } else {
+      throw new Error('Unexpected API response format');
+    }
   } catch (e) {
-    console.error(e)
-    return "请再问我一次吧"
+    console.error(e);
+    return "请再问我一次吧";
   }
 }
 
