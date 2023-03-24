@@ -10,5 +10,5 @@ export const config: IConfig = {
   chatTiggerRule: process.env.CHAT_TRIGGER_RULE || "",
   disableGroupMessage: process.env.DISABLE_GROUP_MESSAGE === "true",
   prompt: process.env.PROMPT || "",
-  blockedNames: process.env.BLOCKED_NAMES?.split(",") || [养个企鹅, Mr.热],
+  blockedNames: process.env.BLOCKED_NAMES?.split(",") || [],
 };
