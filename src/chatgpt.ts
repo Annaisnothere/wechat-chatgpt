@@ -29,6 +29,7 @@ const sendMessage = async (message: string) => {
         temperature:0.4
       }),
     });
+    
     return response.json()
       .then((data) => data.choices[0].message.content);
   } catch (e) {

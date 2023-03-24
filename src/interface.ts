@@ -5,4 +5,5 @@ export interface IConfig {
   chatTiggerRule: string;
   disableGroupMessage: boolean;
   prompt: string;
+  blockedNames: string[];
 }

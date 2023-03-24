@@ -120,7 +120,9 @@ export class ChatGPTBot {
       // Transfer message
       text.includes("收到转账，请在手机上查看") ||
       // 位置消息
-      text.includes("/cgi-bin/mmwebwx-bin/webwxgetpubliclinkimg")
+      text.includes("/cgi-bin/mmwebwx-bin/webwxgetpubliclinkimg") ||
+      // 黑名单中的人名
+      config.blockedNames.includes(talker.name())
     );
   }
 
