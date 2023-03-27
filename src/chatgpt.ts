@@ -25,7 +25,7 @@ const sendMessage = async (message: string) => {
             "content": message
           }
         ],
-        max_tokens:384,
+        max_tokens:256,
         temperature:0.4
       }),
     });
