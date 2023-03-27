@@ -6,4 +6,5 @@ export interface IConfig {
   disableGroupMessage: boolean;
   prompt: string;
   blockedNames: string[];
+  max_tokens: number;
 }

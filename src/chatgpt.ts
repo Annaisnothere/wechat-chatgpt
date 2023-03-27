@@ -5,6 +5,7 @@ import {config} from "./config.js";
 let apiKey = config.openai_api_key;
 let model = config.model;
 let prompt = config.prompt;
+let max_tokens = config.max_tokens;
 const sendMessage = async (message: string) => {
   try {
     const response = await fetch(`https://api.openai.com/v1/chat/completions`, {
@@ -25,7 +26,7 @@ const sendMessage = async (message: string) => {
             "content": message
           }
         ],
-        max_tokens:256,
+        max_tokens: max_tokens,
         temperature:0.4
       }),
     });
