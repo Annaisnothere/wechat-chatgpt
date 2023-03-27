@@ -11,4 +11,5 @@ export const config: IConfig = {
   disableGroupMessage: process.env.DISABLE_GROUP_MESSAGE === "true",
   prompt: process.env.PROMPT || "",
   blockedNames: process.env.BLOCKED_NAMES?.split(",") || [],
+  max_tokens: process.env.MAX_TOKENS || 512,
 };
