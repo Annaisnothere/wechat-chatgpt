@@ -34,7 +34,6 @@ async function main() {
         console.error(e);
       }
     });
-
   async function clearOldMessages(bot, seconds) {
     const messages = await bot.Message.findAll();
     const cutoffTime = new Date(Date.now() - seconds * 1000);
@@ -46,7 +45,6 @@ async function main() {
       }
     }
   }
-
   // Clear old messages every 3 minutes
   setInterval(async () => {
     await clearOldMessages(bot, 180); // 180 seconds = 3 minutes
