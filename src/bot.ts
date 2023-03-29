@@ -185,7 +185,8 @@ export class ChatGPTBot {
       for (const roomId in this.groupMessageStore) {
         delete this.groupMessageStore[roomId];
       }
-    }, 6 * 60 * 60 * 1000); // 每 1 小时清理一次
+    console.log(`Group message store cleaned for all.`);
+    }, 3 * 60 * 1000); // 每 3 分钟清理一次
   }
 
 
