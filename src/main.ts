@@ -36,7 +36,7 @@ async function main() {
       }
     });
 
-  async function clearOldMessages(bot: Wechaty.Instance, seconds: number) {
+  async function clearOldMessages(bot, seconds) {
     const messages = await bot.Message.findAll();
     const cutoffTime = new Date(Date.now() - seconds * 1000);
     
