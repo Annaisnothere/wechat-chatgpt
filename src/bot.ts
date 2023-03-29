@@ -30,6 +30,15 @@ export class ChatGPTBot {
   disableGroupMessage = config.disableGroupMessage || false;
   botName: string = "";
   ready = false;
+  groupMessageStore: Record<string, string> = {};  // 存储群组消息的对象
+
+  // 定时清理群组消息的定时器
+  private groupMessageCleaner?: NodeJS.Timeout;
+
+  constructor() {
+    this.startGroupMessageCleaner();  // 启动定时清理群组消息的定时器
+  }
+
   setBotName(botName: string) {
     this.botName = botName;
   }
@@ -140,6 +149,8 @@ export class ChatGPTBot {
     const gptMessage = await this.getGPTMessage(text);
     // const result = `@${talker.name()} ${text}\n\n------ ${gptMessage}`;
     const result = `@${talker.name()} ${gptMessage}`;
+    const roomId = room.id;
+    this.groupMessageStore[roomId] = result;
     await this.trySay(room, result);
   }
   async onMessage(message: Message) {
@@ -167,4 +178,15 @@ export class ChatGPTBot {
       return;
     }
   }
+
+  // 启动定时清理群组消息的定时器
+  private startGroupMessageCleaner() {
+    this.groupMessageCleaner = setInterval(() => {
+      for (const roomId in this.groupMessageStore) {
+        delete this.groupMessageStore[roomId];
+      }
+    }, 6 * 60 * 60 * 1000); // 每 1 小时清理一次
+  }
+
+
 }
