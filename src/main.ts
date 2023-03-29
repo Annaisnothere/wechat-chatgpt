@@ -6,19 +6,6 @@ const chatGPTBot = new ChatGPTBot();
 const bot =  WechatyBuilder.build({
   name: "wechat-assistant", // generate xxxx.memory-card.json and save login data for the next login
 });
-
-async function clearOldMessages(bot, seconds) {
-  const messages = await bot.Message.findAll();
-  const cutoffTime = new Date(Date.now() - seconds * 1000);
-  
-  for (const message of messages) {
-    if (message.date() < cutoffTime) {
-      await message.del();
-      console.log(`Message "${message.text()}" has been cleared.`);
-    }
-  }
-}
-
 async function main() {
   const initializedAt = Date.now()
   bot
@@ -47,6 +34,18 @@ async function main() {
         console.error(e);
       }
     });
+
+  async function clearOldMessages(bot, seconds) {
+    const messages = await bot.Message.findAll();
+    const cutoffTime = new Date(Date.now() - seconds * 1000);
+    
+    for (const message of messages) {
+      if (message.date() < cutoffTime) {
+        await message.del();
+        console.log(`Message "${message.text()}" has been cleared.`);
+      }
+    }
+  }
 
   // Clear old messages every 3 minutes
   setInterval(async () => {
