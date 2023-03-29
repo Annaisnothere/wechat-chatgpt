@@ -1,5 +1,5 @@
 import { WechatyBuilder } from "wechaty";
-import Wechaty from 'wechaty';
+import { Wechaty } from 'wechaty';
 import QRCode from "qrcode";
 import { ChatGPTBot } from "./bot.js";
 const chatGPTBot = new ChatGPTBot();
@@ -36,7 +36,7 @@ async function main() {
       }
     });
 
-  async function clearOldMessages(bot, seconds) {
+  async function clearOldMessages(bot: Wechaty, seconds: number) {
     const messages = await bot.Message.findAll();
     const cutoffTime = new Date(Date.now() - seconds * 1000);
     
