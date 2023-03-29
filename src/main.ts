@@ -54,7 +54,8 @@ async function handleMessage(message: Message) {
   // Handle message with ChatGPTBot
   await chatGPTBot.onMessage(message);
 
-  clearOldMessagesFromCache(180);
+  // 4 hours clean once
+  clearOldMessagesFromCache(4 * 60 * 60);  
 }
 
 function clearOldMessagesFromCache(seconds: number) {
@@ -63,7 +64,8 @@ function clearOldMessagesFromCache(seconds: number) {
   for (const [messageId, messageDate] of messageCache.entries()) {
     if (messageDate < cutoffTime) {
       messageCache.delete(messageId);
-      console.log(`Message "${messageId}" has been cleared from cache.`);
+    console.log(`Message has been cleared from cache.`);
+    // console.log(`Message "${messageId}" has been cleared from cache.`);
     }
   }
 }
