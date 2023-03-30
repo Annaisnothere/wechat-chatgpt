@@ -54,8 +54,8 @@ async function handleMessage(message: Message) {
   // Handle message with ChatGPTBot
   await chatGPTBot.onMessage(message);
 
-  // 4 hours clean once
-  clearOldMessagesFromCache(4 * 60 * 60);  
+  // 1 hours clean once
+  clearOldMessagesFromCache(1 * 60 * 60);  
 }
 
 function clearOldMessagesFromCache(seconds: number) {
